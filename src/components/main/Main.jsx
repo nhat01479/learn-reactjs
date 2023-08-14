@@ -3,21 +3,21 @@ import React, { useState, useEffect } from "react";
 function Main() {
   const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentTime(new Date().toLocaleTimeString());
-  //   }, 1000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date().toLocaleTimeString());
+    }, 1000);
 
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, []);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
-  useState (()=> {
-    return setInterval(() => {
-          setCurrentTime(new Date().toLocaleTimeString());
-        }, 1000);
-  })
+  // useState (()=> {
+  //   return setInterval(() => {
+  //         setCurrentTime(new Date().toLocaleTimeString());
+  //       }, 1000);
+  // }) //không nên dùng cách này
     return (
         <div className="row py-lg-5 mt-5">
         <div className="col-lg-6 col-md-8 mx-auto">
