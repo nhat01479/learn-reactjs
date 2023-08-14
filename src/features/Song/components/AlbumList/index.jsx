@@ -10,7 +10,9 @@ function AlbumList({albumList}) {
     return (
            <>
                 {albumList.map(album => (
-                    <Album album={album}/>
+                    <div key={album.id}>
+                        <Album album={album}/>
+                    </div>
                 ))}
             </> 
     );
