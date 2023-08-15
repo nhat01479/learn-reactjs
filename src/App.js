@@ -12,6 +12,10 @@ import LuckyMan from "./features/UseState/LuckyMan";
 import Login from "./features/UseState/Login";
 import UseStateAdvanced from "./features/UseState/UseStateAdvanced";
 import Car from "./features/UseState/Car";
+import { Checkbox, Radio, SelectOption } from "./features/UseState/CheckboxRadioSelectOption";
+import Register from "./features/UseState/Register";
+import Cart from "./features/UseState/Cart";
+import PlayList from "./features/PlayList/PlayList";
 
 
 function App() {
@@ -19,7 +23,7 @@ function App() {
 		
 	<>
 		<Navbar/>
-		<Main/>
+		{/* <Main/> */}
 
 		{/* <UseState/> */}
 
@@ -33,11 +37,21 @@ function App() {
 
 		{/* <UseStateAdvanced/> */}
 
-		<Car/>
+		{/* <Car/> */}
 
-		<Footer/>
+		<SelectOption/>
+
 		
+		{/* <Register/> */}
+
+		{/* <Cart/> */}
 		
+		{/* <PlayList /> */}
+
+
+		
+		{/* <Footer/> */}
+
 	</>
 	);
 }
