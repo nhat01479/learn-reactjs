@@ -6,6 +6,9 @@ import Main from "./components/main/Main";
 import MainContent from './components/main/MainContent';
 import TodoFeature from "./features/Todo";
 import AlbumFeature from "./features/Song";
+import UseEffectDemo from "./features/UseEffect/UseEffectDemo";
+import CountDown from "./features/UseEffect/CountDown";
+import StopWatch from "./features/UseEffect/StopWatch";
 
 
 function App() {
@@ -21,10 +24,15 @@ function App() {
 			
 			{/* <TodoFeature/> */}
 
-			<AlbumFeature/>
+			{/* <AlbumFeature/> */}
+
+			{/* <UseEffectDemo/> */}
+
+			<CountDown/>
+		
+			{/* <StopWatch/> */}
+		
 			<Footer/>
-		
-		
 	</>
 	);
 }

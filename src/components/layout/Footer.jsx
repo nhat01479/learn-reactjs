@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer () {
     return (
-        <footer className="text-muted py-5 fix-bottom">
+        <footer className="text-muted py-5 fixed-bottom">
         <div className="container">
           <p className="float-end mb-1">
             <a href="/#">Back to top</a>
