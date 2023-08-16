@@ -6,6 +6,7 @@ import Main from "./components/main/Main";
 import MainContent from './components/main/MainContent';
 import TodoFeature from "./features/Todo";
 import AlbumFeature from "./features/Song";
+import ProductList from "./features/Product/ProductList";
 
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
 		
 	<>
 			<Navbar/>
-			<Main/>
+			{/* <Main/> */}
 			
 			{/* <MainContent/> */}
 
@@ -21,8 +22,10 @@ function App() {
 			
 			{/* <TodoFeature/> */}
 
-			<AlbumFeature/>
-			<Footer/>
+			{/* <AlbumFeature/> */}
+
+			<ProductList />
+			{/* <Footer/> */}
 		
 		
 	</>
