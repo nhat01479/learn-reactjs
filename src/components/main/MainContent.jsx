@@ -6,12 +6,29 @@ function MainContent() {
 
     const [photos, setPhotos] = useState([]);
 
+    // useEffect(() => {
+    //     fetch('https://js-post-api.herokuapp.com/api/posts')
+    //         .then(response => response.json())
+    //         .then(data => setPhotos(data))
+    // }, []);
+
+    // useEffect(() => {
+    //     async function getAllPost() {
+    //         const res = await fetch('https://js-post-api.herokuapp.com/api/posts');
+    //         const data = await res.json();
+    //         setPhotos(data);
+    //     }
+    //     getAllPost()
+    // }, [])
+
     useEffect(() => {
-        fetch('https://js-post-api.herokuapp.com/api/posts')
-            .then(response => response.json())
-            .then(data => setPhotos(data))
-            .catch(error => console.error('Error fetching data:', error));
-    }, []);
+        const getAllPost = async () => {
+            const res = await fetch('https://js-post-api.herokuapp.com/api/posts');
+            const data = await res.json();
+            setPhotos(data);
+        }
+        getAllPost()
+    })
 
     return (
         <div className="container">

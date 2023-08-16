@@ -23,7 +23,7 @@ function App() {
 		
 	<>
 		<Navbar/>
-		{/* <Main/> */}
+		<MainContent/>
 
 		{/* <UseState/> */}
 
@@ -39,7 +39,7 @@ function App() {
 
 		{/* <Car/> */}
 
-		<SelectOption/>
+		{/* <SelectOption/> */}
 
 		
 		{/* <Register/> */}
