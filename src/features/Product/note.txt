@@ -1,0 +1,19 @@
+playlist?.map()
+
+playlist.length && playlist.map()
+
+
+Optional chaining (?.)
+
+cleanup function: (tuỳ chọn có thể có hoặc không, lần đầu thì được chạy trước)
+     return () => {}
+
+react-hook-form
+
+schema yup: định nghĩa kiểu dữ liệu 
+
+handlesubmit xử lý submit form, nếu có lỗi thì để errors xử lý,
+{...register('email')} => thuộc tính name email
+nếu không có lỗi thì trả về handleRegister
+
+optional operator
