@@ -8,6 +8,8 @@ import TodoFeature from "./features/Todo";
 import AlbumFeature from "./features/Song";
 import Register from "./features/Register/Register";
 import ProductList from "./features/Product/ProductList";
+import { Modal } from "bootstrap";
+import ModalCreate from "./components/main/ModalCreate";
 
 
 function App() {
@@ -15,18 +17,11 @@ function App() {
 		
 	<>
 			<Navbar/>
-			{/* <Main/> */}
 			
-			{/* <MainContent/> */}
+			<MainContent/>
 
-			{/* <ColorList/> */}
+	
 			
-			{/* <TodoFeature/> */}
-
-			{/* <AlbumFeature/> */}
-			<Register/>
-			{/* <ProductList/> */}
-			{/* <Footer/> */}
 		
 		
 	</>
