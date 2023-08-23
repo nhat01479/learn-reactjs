@@ -59,10 +59,10 @@ function MainContent() {
 
         <>
             {loading ? (<div class="d-flex justify-content-center align-items-center vh-100">
-                            <div class="spinner-border" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                        </div>) : (
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>) : (
                 <div className="container">
                     <ModalCreate showModal={showModal}
                         showModalCreate={showModalCreate}
