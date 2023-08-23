@@ -26,3 +26,27 @@ import Route, Routes
 - thayy thế href thành 'to={/...}', phải khớp với path
 
 //Lấy tham số: import useParams
+
+
+// useContext
+// const context = createContext() => tạo ra 1 vùng nhớ ở phạm vi global
+// provider => value (dữ liệu)
+// consumer = useContext(context)
+
+// có thể có nhiều context 1 trong 1 dự án
+
+//-----------------------------------
+// const [state, dispatch] = useReducer(reducer, initState)
+
+// reducer = (state, action) => {
+//     // code => cập nhật state
+// }
+
+// action = { type, playload }
+
+// type: phân loại (hành động)
+// playload: chứa dữ liệu phục vụ cho hành động đó
+
+
+// dispatch: kích hoạt hành động
+// dispatch(type, payload)
