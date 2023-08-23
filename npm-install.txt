@@ -4,39 +4,25 @@ npm install react-hook-form
 npm i react-router-dom
 
 
+//----------------------------------
+Cú pháp của useReducer:
 
+    const [state, dispatch] = useReducer(reducer, initialState)
 
-//router: index.js
-import BrowserRowter
+- state là trạng thái hiện tại của component.
+- dispatch là một hàm được sử dụng để gửi các hành động (actions) đến reducer để cập nhật state.
+- reducer là một hàm reducer mà bạn định nghĩa để xử lý các hành động và cập nhật state dựa trên hành động đó.
+- initialState là trạng thái ban đầu của state.
 
-<BrowserRouter>
-<App />
-</BrowserRouter>
+Cách hoạt động của useReducer:
 
-//App.js
-import Route, Routes
-<MainLayout>
-    <Routes>
-        <Router path='/' element={<Main/>} />
-    </ Routes >
+1. Ban đầu, state sẽ có một trạng thái ban đầu được định nghĩa bởi initialState.
 
-</ MainLayout >
+2. Khi một hành động được gửi thông qua hàm dispatch, nó sẽ được truyền vào hàm reducer.
 
-//Thay thế thẻ a bằng Link, nếu là Menu thì dùng NavLink import Link
-- thayy thế href thành 'to={/...}', phải khớp với path
+3. Trong hàm reducer, bạn xử lý hành động đó và dựa trên hành động đó, trả về một phiên bản mới của state.
 
-//Lấy tham số: import useParams
-
-
-// useContext
-// const context = createContext() => tạo ra 1 vùng nhớ ở phạm vi global
-// provider => value (dữ liệu)
-// consumer = useContext(context)
-
-// có thể có nhiều context 1 trong 1 dự án
-
-//-----------------------------------
-// const [state, dispatch] = useReducer(reducer, initState)
+4. Sau khi state được cập nhật bởi hàm reducer, component sẽ được render lại với state mới.
 
 // reducer = (state, action) => {
 //     // code => cập nhật state
