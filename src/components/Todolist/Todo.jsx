@@ -1,6 +1,5 @@
-import React, { useReducer, useState } from 'react';
-import Modal from 'react-bootstrap/Modal';
-import ModalExample from './ModalBT';
+import React, { useReducer } from 'react';
+
 
 const initialState = {
     todoList: [
@@ -111,13 +110,8 @@ function Todo(props) {
     const [state, dispatch] = useReducer(reducer, initialState);
     const {todoList, jobname, editTodo, loading} = state
 
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     return (
         <>
-            <ModalExample handleClose={handleClose} handleShow={handleShow} show={show}/>
             <div className='container d-flex flex-colum justify-content-center align-items-center mt-5'>
                 <div className='row col-sm-6'>
                     <h1 className='text-center'>Todo List</h1>
@@ -127,11 +121,8 @@ function Todo(props) {
                                 value={jobname}
                                 onInput={(e) => dispatch({ type: SET_JOBNAME, payload: e.target.value })}
                             />
-                            {/* <button className="btn btn-sm btn-primary"
+                            <button className="btn btn-sm btn-primary"
                                 onClick={() => dispatch({ type: ADD_JOB, payload: null })}>
-                                Add Job</button> */}
-                                <button className="btn btn-sm btn-primary"
-                                onClick={() => setShow(!show)}>
                                 Add Job</button>
 
                             {/* <button className="btn btn-sm btn-secondary" onClick={() => dispatch({type: SET_LOADING, payload: true})}>
@@ -167,7 +158,6 @@ function Todo(props) {
                                                             onClick={() => dispatch({ type: SET_EDITTODO, payload: todo.id })}></i>
                                                         <i role="button" className='fa fa-trash text-danger'
                                                             onClick={() => dispatch({ type: DELETE_JOB, payload: todo.id })}></i>
-                                                            {/* {onClick={() => dispatch({ type: UPDATE_JOB, payload: todo.id, newName: 'Hello' })}} */}
                                                     </div>
                                                 </>
                                             )
