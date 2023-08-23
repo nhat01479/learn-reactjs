@@ -26,11 +26,6 @@ function MainContent() {
     const [totalPages, setTotalPages] = useState(1);
     const [loading, setLoading] = useState(false);
 
-    const [pageable, setPageable] = useState({
-        _page: 1,
-        _limit: 9,
-
-    })
     const [showModal, setShowModal] = useState(false);
 
     const showModalCreate = () => {
@@ -59,10 +54,10 @@ function MainContent() {
 
         <>
             {loading ? (<div class="d-flex justify-content-center align-items-center vh-100">
-                            <div class="spinner-border" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                        </div>) : (
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>) : (
                 <div className="container">
                     <ModalCreate showModal={showModal}
                         showModalCreate={showModalCreate}
@@ -93,7 +88,7 @@ function MainContent() {
                     </div>
                     <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3  justify-content-center">
                         <div>
-                            <nav aria-label="Page navigation example">
+                            {/* <nav aria-label="Page navigation example">
                                 <ul className="pagination">
                                     <li role="button" className={`${currentPage === 1 ? 'page-item disabled' : 'page-item'}`}                            >
                                         <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>Previous</button>
@@ -131,7 +126,26 @@ function MainContent() {
                                         <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
                                     </li>
                                 </ul>
+                            </nav> */}
+                            <nav aria-label="Page navigation example">
+                                <ul className="pagination">
+                                    <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                                        <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>Previous</button>
+                                    </li>
+                                    {[...Array(totalPages > 3 ? 3 : totalPages).keys()].map(index => {
+                                        const page = currentPage === 1 ? index + 1 : currentPage === totalPages ? totalPages - 2 + index : currentPage - 1 + index;
+                                        return (
+                                            <li key={page} className={`page-item ${currentPage === page ? 'active' : ''}`}>
+                                                <button className="page-link" onClick={() => setCurrentPage(page)}>{page}</button>
+                                            </li>
+                                        );
+                                    })}
+                                    <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                                        <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
+                                    </li>
+                                </ul>
                             </nav>
+
                         </div>
 
                     </div>
