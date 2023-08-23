@@ -1,123 +1,14 @@
 import React, { useReducer, useState } from 'react';
-import Modal from 'react-bootstrap/Modal';
-import ModalExample from './ModalBT';
+import {reducer, initialState, addJob, addJobName, setEditTodo, setNewName, updateJob, deleteJob} from '../../store'
 
-const initialState = {
-    todoList: [
-        {
-            id: 1,
-            name: "Ăn cơm",
-        },
-        {
-            id: 2,
-            name: "Uống nước",
-        },
-        {
-            id: 3,
-            name: "Học bài",
-        }
-    ],
-    jobname: "",
-    editTodo: null,
-    loading: false
-}
 
-const ADD_JOB = 'ADD_JOB';
-const SET_JOBNAME = 'SET_JOBNAME';
-const SET_LOADING = 'SET_LOADING';
-const DELETE_JOB = 'DELETE_JOB';
-const UPDATE_JOB = 'UPDATE_JOB';
-const SET_EDITTODO = 'SET_EDITTODO';
-const SET_NEWNAME = 'SET_NEWNAME';
-
-const reducer = (state, action) => {
-    switch (action.type) {
-        case ADD_JOB: {
-            let newTodoList = [...state.todoList];
-            newTodoList.sort((todo1, todo2) => todo2.id - todo1.id);
-
-            let newJob = {
-                id: newTodoList[0].id + 1,
-                name: state.jobname,
-                complete: false
-            }
-            return {
-                ...state,
-                todoList: [...state.todoList, newJob],
-                jobname: ''
-            }
-        }
-        case SET_JOBNAME: {
-            return {
-                ...state,
-                jobname: action.payload
-            }
-        }
-        case SET_LOADING: {
-            return {
-                ...state,
-                loading: action.payload
-            }
-        }
-        case UPDATE_JOB: {
-            let newTodoList = state.todoList.map((todo) => {
-                if (todo.id === action.payload) {
-                    state.todoList[todo.id - 1].name = action.newName;      
-                } 
-                return todo;
-            })
-
-            console.log(newTodoList);
-            
-           return {
-            ...state,
-                todoList: newTodoList,
-                editTodo: null,
-                jobname: ''
-           }
-
-        }
-        case DELETE_JOB: {
-            let newTodoList = state.todoList.filter(item => item.id !== action.payload)
-            return {
-                ...state,
-                todoList: newTodoList,
-                jobname: ''
-            }   
-        }
-        case SET_EDITTODO: {
-            let newTodo = state.todoList.filter(item => item.id === action.payload)[0];
-            return {
-                ...state,
-                editTodo: newTodo
-            }
-        }
-        case SET_NEWNAME: {
-            return {
-                ...state,
-                editTodo: {
-                    ...state.editTodo,
-                    name: action.payload
-                }
-            }
-        }
-
-        default: {
-            throw new Error("Invalid Action")
-        }
-    }
-}
 function Todo(props) {
     const [state, dispatch] = useReducer(reducer, initialState);
     const {todoList, jobname, editTodo, loading} = state
 
-    const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     return (
         <>
-            <ModalExample handleClose={handleClose} handleShow={handleShow} show={show}/>
             <div className='container d-flex flex-colum justify-content-center align-items-center mt-5'>
                 <div className='row col-sm-6'>
                     <h1 className='text-center'>Todo List</h1>
@@ -125,14 +16,12 @@ function Todo(props) {
                         <div className='col-12 d-flex form-group justify-content-between'>
                             <input type="text" className="form-control"
                                 value={jobname}
-                                onInput={(e) => dispatch({ type: SET_JOBNAME, payload: e.target.value })}
+                                onInput={(e) => dispatch(addJobName(e.target.value))}
                             />
-                            {/* <button className="btn btn-sm btn-primary"
-                                onClick={() => dispatch({ type: ADD_JOB, payload: null })}>
-                                Add Job</button> */}
-                                <button className="btn btn-sm btn-primary"
-                                onClick={() => setShow(!show)}>
+                            <button className="btn btn-sm btn-primary"
+                                onClick={() => dispatch(addJob(null))}>
                                 Add Job</button>
+                               
 
                             {/* <button className="btn btn-sm btn-secondary" onClick={() => dispatch({type: SET_LOADING, payload: true})}>
                                 Set Loading</button> */}
@@ -149,14 +38,12 @@ function Todo(props) {
                                                 <>
 
                                                     <input type="text"  className='form-control' style={{ width: '90%' }}
-                                                        value={editTodo.name || todo.name} onInput={(e)=> dispatch({type: SET_NEWNAME, payload: e.target.value})}/>
+                                                        value={editTodo.name || todo.name} onInput={(e)=> dispatch(setNewName(e.target.value))}/>
                                                     <div>
                                                         <i role="button" className='fa fa-save text-warning me-2'
-                                                          onClick={() => dispatch({ type: UPDATE_JOB, 
-                                                                                    payload: todo.id, 
-                                                                                    newName: editTodo.name || todo.name })} ></i>
+                                                          onClick={() => dispatch(updateJob(todo.id, editTodo.name))} ></i>
                                                         <i role="button" className='fa fa-times text-danger'
-                                                          onClick={() => dispatch({ type: SET_EDITTODO, payload: null })}  ></i>
+                                                          onClick={() => dispatch(setEditTodo(null))}  ></i>
                                                     </div>
                                                 </>
                                             ) : (
@@ -164,10 +51,9 @@ function Todo(props) {
                                                     <span>{todo.id}. {todo.name}</span>
                                                     <div>
                                                         <i role="button" className='fa fa-edit text-warning me-2'
-                                                            onClick={() => dispatch({ type: SET_EDITTODO, payload: todo.id })}></i>
+                                                            onClick={() => dispatch(setEditTodo(todo.id))}></i>
                                                         <i role="button" className='fa fa-trash text-danger'
-                                                            onClick={() => dispatch({ type: DELETE_JOB, payload: todo.id })}></i>
-                                                            {/* {onClick={() => dispatch({ type: UPDATE_JOB, payload: todo.id, newName: 'Hello' })}} */}
+                                                            onClick={() => dispatch(deleteJob(todo.id))}></i>
                                                     </div>
                                                 </>
                                             )
