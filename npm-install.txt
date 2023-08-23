@@ -26,3 +26,11 @@ import Route, Routes
 - thayy thế href thành 'to={/...}', phải khớp với path
 
 //Lấy tham số: import useParams
+
+
+// useContext
+// const context = createContext() => tạo ra 1 vùng nhớ ở phạm vi global
+// provider => value (dữ liệu)
+// consumer = useContext(context)
+
+// có thể có nhiều context 1 trong 1 dự án

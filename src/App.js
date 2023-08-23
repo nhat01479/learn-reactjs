@@ -1,29 +1,35 @@
 import "./App.css";
 import React from 'react';
-import Navbar from "./components/layout/Navbar";
-import Footer from "./components/layout/Footer";
+import { Route, Routes } from 'react-router';
+
 import Main from "./components/main/Main";
-import MainContent from './components/main/MainContent';
-import TodoFeature from "./features/Todo";
+
+import MainLayout from "./components/layout/MainLayout";
+import Login from "./components/Login/Login";
 import AlbumFeature from "./features/Song";
-import Register from "./features/Register/Register";
-import ProductList from "./features/Product/ProductList";
-import { Modal } from "bootstrap";
-import ModalCreate from "./components/main/ModalCreate";
+import ColorList from "./features/Color/colorList";
 
 
 function App() {
 	return (
 		
 	<>
-			<Navbar/>
-			
-			<MainContent/>
+		<MainLayout>
+		<div className="container" style={{ minHeight: 'calc(100vh  - 150px)' }}>
 
-	
+		<Routes>
+				<Route path='/' element={<Main/>} />
+				<Route path='/login' element={<Login/>} />
+				<Route path='/color' element={<ColorList/>} />
+				<Route path='/song/album' element={<AlbumFeature/>} />
+				
+
+		</Routes>
+		</div>
+
+		</MainLayout>			
+
 			
-		
-		
 	</>
 	);
 }
