@@ -11,7 +11,7 @@ function StudentList() {
     useEffect(() => {
         setLoading(true);
         async function getAllStudent() {
-            const res = await fetch(`https://js-post-api.herokuapp.com/api/students?_limit=3_page=${currentPage}`);
+            const res = await fetch(`https://js-post-api.herokuapp.com/api/students?_limit=9_page=${currentPage}`);
             let dataRes = await res.json();
 
             setStudentList(dataRes.data);
@@ -23,12 +23,12 @@ function StudentList() {
 
 
     return (
-        <div className='container'  style={{ height: 'calc(100vh  - 205px)' }}>
+        <div className='container'  style={{ minHeight: 'calc(100vh  - 205px)' }}>
             <h1 className='text-center'>Student List</h1>
             <div className='row'>
                 <ul className='pagination'>
                         <ul className="pagination">
-                            <li className="page-item ">
+                            {/* <li className="page-item ">
                                 <button className="page-link" disabled={currentPage === 1}
                                     onClick={() => setCurrentPage(currentPage - 1)}>Previous</button>
                             </li>
@@ -38,7 +38,19 @@ function StudentList() {
                             <li className="page-item">
                                 <button className="page-link" disabled={currentPage === totalPage}
                                     onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
+                            </li> */}
+                             {
+                        [...Array(totalPage)].map((page, index) => (
+                            <li key={index}>
+                                <button 
+                                    className={`btn btn-sm ${index == currentPage - 1 ? 'btn-danger' : 'btn-warning'} me-1 text-white`}
+                                    onClick={() => setCurrentPage(index + 1)}
+                                    >
+                                        {index + 1}
+                                </button>
                             </li>
+                        ))
+                    }
                         </ul>
                 </ul>
             </div>
