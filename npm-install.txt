@@ -35,4 +35,4 @@ Cách hoạt động của useReducer:
 
 
 // dispatch: kích hoạt hành động
-// dispatch(type, payload)
+// dispatch({type, payload})
