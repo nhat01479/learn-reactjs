@@ -39,7 +39,7 @@ function MainContent() {
     useEffect(() => {
         setLoading(true)
         const getAllPost = async () => {
-            const res = await fetch(`https://js-post-api.herokuapp.com/api/posts?_page=${currentPage}&_limit=9`);
+            const res = await fetch(`https://js-post-api.herokuapp.com/api/posts?_page=${currentPage}&_limit=3`);
             const postList = await res.json();
             setPostList(postList);
             setTotalPages(Math.ceil(Number(postList.pagination._totalRows) / Number(postList.pagination._limit)));
@@ -64,7 +64,7 @@ function MainContent() {
                         closeModal={closeModal}
                     />
 
-                    <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 " style={{minHeight: 'calc(100vh - 150px'}}>
 
                         {postList?.data?.map((element, index) => (
 
@@ -86,7 +86,7 @@ function MainContent() {
                         ))}
 
                     </div>
-                    <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3  justify-content-center">
+                    <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-2 justify-content-center">
                         <div>
                             {/* <nav aria-label="Page navigation example">
                                 <ul className="pagination">
@@ -127,7 +127,7 @@ function MainContent() {
                                     </li>
                                 </ul>
                             </nav> */}
-                            <nav aria-label="Page navigation example">
+                            {/* <nav aria-label="Page navigation example">
                                 <ul className="pagination">
                                     <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
                                         <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>Previous</button>
@@ -142,6 +142,40 @@ function MainContent() {
                                     })}
                                     <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
                                         <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
+                                    </li>
+                                </ul>
+                            </nav> */}
+                            <nav aria-label="Page navigation example">
+                                <ul className="pagination">
+                                    <li className='page-item'>
+                                        <button className="page-link" onClick={() => setCurrentPage(1)}>FirstPage</button>
+                                    </li>
+                                    <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                                        <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>Previous</button>
+                                    </li>
+                                    {currentPage > 2 && totalPages > 3 && (
+                                        <li className="page-item">
+                                            <button className="page-link">...</button>
+                                        </li>
+                                    )}
+                                    {[...Array(totalPages > 3 ? 3 : totalPages).keys()].map(index => {
+                                        const page = currentPage === 1 ? index + 1 : currentPage === totalPages ? totalPages - 2 + index : currentPage - 1 + index;
+                                        return (
+                                            <li key={page} className={`page-item ${currentPage === page ? 'active' : ''}`}>
+                                                <button className="page-link" onClick={() => setCurrentPage(page)}>{page}</button>
+                                            </li>
+                                        );
+                                    })}
+                                    {currentPage < totalPages - 1 && totalPages > 3 && (
+                                        <li className="page-item">
+                                            <button className="page-link">...</button>
+                                        </li>
+                                    )}
+                                    <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                                        <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
+                                    </li>
+                                    <li className='page-item'>
+                                        <button className="page-link" onClick={() => setCurrentPage(totalPages)}>LastPage</button>
                                     </li>
                                 </ul>
                             </nav>
