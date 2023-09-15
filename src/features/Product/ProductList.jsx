@@ -84,7 +84,6 @@ function ProductList(props) {
             sortBy: sort,
             order: newSortOrder
         })
-
     }
 
 
