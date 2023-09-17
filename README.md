@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+Sử dụng redux:
+const { createSlice } = require("@reduxjs/toolkit");
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+-   Mỗi tính năng sẽ tạo 1 file Slice.js bằng createSlice()
+-   Các action sẽ được tự động tạo ra dựa vào danh sách khai báo trong reducers - export reducer
 
-## Available Scripts
+-   Trong thư mục store tạo file index.js là store chung cho dự án
+-   import { configureStore } from "@reduxjs/toolkit";
+-   import counterReducer from "./counterSlice"; //counterReducer là bí danh cho reducer muốn import
+-   Khai báo danh sách reducer muốn export bằng const rootReducer = {}
+-   Tạo store
+-   const store = configureStore({
+    reducer: rootReducer,
+    });
+-   export store
 
-In the project directory, you can run:
+*   Để sử dụng reducer từ store:
+    <Provider store={store}>
+    <App />
+    </Provider>
+*   Ở component cần dùng reducer:
 
-### `npm start`
+    //counter là tên của reducer được khai báo trong rootReducer phía trên
+    const counter = useSelector((state) => state.counter);
+    const dispatch = useDispatch();
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    const handleIncrease = () => {
+    const action = increase();
+    //increase() là action được khai báo trong reducers khi createSlice()
+    dispatch(action);
+    };
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+Sử dụng styles.module.css
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-   Mỗi component sẽ tạo 1 file style.module.css
+-   import styles from "./styles.module.css";
+-   Khi áp dụng css cho className:  
+    <button className={styles.button} > Increase </button>
+    //button: được khai báo css ở file styles
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Sử dụng clsx để thay đổi className:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+-   Cú pháp:
+    <p className={clsx({ tên class: true/false})}> Cú pháp</p>
+    Nếu true sẽ hiện tên class, nếu false thì không hiện
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+        (Thêm dấu ngoặc vuông vào tên class nếu sử dụng chung với module.css)
 
-### `npm run eject`
+        <div>
+            <p>Sử dụng clsx để thay đổi className</p>
+            <p className={clsx({ [styles.hidden]: hidden })}>Xin chào!</p>
+            <button onClick={handleClick}>Click me</button>
+        </div>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+        const [hidden, setHidden] = useState(false);
+        const handleClick = () => {
+        setHidden(!hidden);
+        };
