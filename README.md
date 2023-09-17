@@ -37,7 +37,7 @@ Sử dụng styles.module.css
 -   Mỗi component sẽ tạo 1 file style.module.css
 -   import styles from "./styles.module.css";
 -   Khi áp dụng css cho className:  
-    <button className={styles.button} > Increase </button>
+    `<button className={styles.button} > Increase </button>`
     //button: được khai báo css ở file styles
 
 ---
@@ -45,7 +45,7 @@ Sử dụng styles.module.css
 Sử dụng clsx để thay đổi className:
 
 -   Cú pháp:
-    <p className={clsx({ tên class: true/false})}> Cú pháp</p>
+    `<p className={clsx({ tên class: true/false})}> Cú pháp</p>`
     Nếu true sẽ hiện tên class, nếu false thì không hiện
 
         (Thêm dấu ngoặc vuông vào tên class nếu sử dụng chung với module.css)
